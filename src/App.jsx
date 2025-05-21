@@ -149,7 +149,7 @@ function App() {
         <div className="main w-full rotate-[-10deg] scale-[1.7] transition-transform duration-300">
           <div className="landing relative w-full h-screen bg-black overflow-hidden">
             {/* Navbar */}
-            <div className="navbar absolute top-0 left-0 z-[10] w-full py-3 sm:py-4 md:py-6 px-4 md:px-10 flex items-center justify-between backdrop-blur-sm bg-black/20">
+            <div className="navbar absolute top-0 left-0 z-[10] w-full py-3 sm:py-4 md:py-6 px-4 md:px-10 flex items-center justify-between bg-black/20">
               <div className="logo flex gap-2 sm:gap-3 md:gap-6 hover:scale-105 transition-transform cursor-pointer">
                 <div className="lines flex flex-col gap-[2px] sm:gap-[3px] md:gap-[5px]">
                   <div className="line w-8 sm:w-10 h-1 sm:h-1.5 bg-white"></div>
