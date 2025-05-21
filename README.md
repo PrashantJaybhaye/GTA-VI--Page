@@ -11,22 +11,22 @@ This web application is developed using [Vite](https://vitejs.dev/) and [React](
 - A structured project setup with `public` and `src` directories.
 
 ## 📁 Project Structure
-
-GTA-VI--Page/
-├── public/
-│ └── index.html
-├── src/
-│ ├── assets/
-│ ├── components/
-│ ├── App.jsx
-│ └── main.jsx
-├── .gitignore
-├── eslint.config.js
-├── package.json
-├── package-lock.json
-├── vite.config.js
-└── README.md
-
+```
+   GTA-VI--Page/
+   ├── public/
+   │ └── index.html
+   ├── src/
+   │ ├── assets/
+   │ ├── components/
+   │ ├── App.jsx
+   │ └── main.jsx
+   ├── .gitignore
+   ├── eslint.config.js
+   ├── package.json
+   ├── package-lock.json
+   ├── vite.config.js
+   └── README.md
+```
 ## Markdown
 
 - `public/`: Contains static assets and the main HTML file.  
