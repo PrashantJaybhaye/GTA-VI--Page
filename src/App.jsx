@@ -101,16 +101,18 @@ function App() {
     const main = document.querySelector(".main");
 
     main?.addEventListener("mousemove", function (e) {
-      const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
-      gsap.to(".main .text", {
-        x: `${-50 - xMove * 0.4}%`,
-      });
-      gsap.to(".sky", {
-        x: xMove,
-      });
-      gsap.to(".bg", {
-        x: xMove * 1.7,
-      });
+      if (window.innerWidth > 1024) {  // Only enable parallax on desktop
+        const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
+        gsap.to(".main .text", {
+          x: `${-50 - xMove * 0.4}%`,
+        });
+        gsap.to(".sky", {
+          x: xMove,
+        });
+        gsap.to(".bg", {
+          x: xMove * 1.7,
+        });
+      }
     });
   }, [showContent]);
 
@@ -147,17 +149,17 @@ function App() {
       </div>
 
       {showContent && (
-        <div className="main w-full rotate-[-10deg] scale-[1.7]">
+        <div className="main w-full rotate-[-10deg] scale-[1.7] transition-transform duration-300">
           <div className="landing relative w-full h-screen bg-black overflow-hidden">
             {/* Navbar */}
-            <div className="navbar absolute top-0 left-0 z-[10] w-full py-3 sm:py-4 md:py-6 px-4 md:px-10 flex items-center justify-between">
-              <div className="logo flex gap-2 sm:gap-3 md:gap-6">
+            <div className="navbar absolute top-0 left-0 z-[10] w-full py-3 sm:py-4 md:py-6 px-4 md:px-10 flex items-center justify-between backdrop-blur-sm bg-black/20">
+              <div className="logo flex gap-2 sm:gap-3 md:gap-6 hover:scale-105 transition-transform cursor-pointer">
                 <div className="lines flex flex-col gap-[2px] sm:gap-[3px] md:gap-[5px]">
                   <div className="line w-8 sm:w-10 h-1 sm:h-1.5 bg-white"></div>
                   <div className="line w-5 sm:w-6 h-1 sm:h-1.5 bg-white"></div>
                   <div className="line w-3 sm:w-4 h-1 sm:h-1.5 bg-white"></div>
                 </div>
-                <h3 className="text-xl sm:text-2xl md:text-4xl text-white -mt-[3px] sm:-mt-[5px] md:-mt-[10px]">
+                <h3 className="text-xl sm:text-2xl md:text-4xl text-white -mt-[3px] sm:-mt-[5px] md:-mt-[10px] hover:text-yellow-300 transition-colors">
                   Rockstar
                 </h3>
               </div>
@@ -166,28 +168,28 @@ function App() {
             {/* Background & Character */}
             <div className="imagesdiv relative w-full h-full">
               <img
-                className="absolute sky scale-[1.5] rotate-[-20deg] top-0 left-0 w-full h-full object-cover"
+                className="absolute sky scale-[1.5] rotate-[-20deg] top-0 left-0 w-full h-full object-cover transition-transform duration-300"
                 src="./sky.png"
                 alt="Sky Background"
               />
               <img
-                className="absolute bg scale-[1.8] rotate-[-5deg] top-0 left-0 w-full h-full object-cover"
+                className="absolute bg scale-[1.8] rotate-[-5deg] top-0 left-0 w-full h-full object-cover transition-transform duration-300"
                 src="./bg.png"
                 alt="Background"
               />
-              <div className="text absolute top-20 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 text-white flex flex-col gap-1 sm:gap-2 text-center">
-                <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[7rem] leading-none -ml-10 sm:-ml-20 md:-ml-40">
+              <div className="text absolute top-20 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 text-white flex flex-col gap-1 sm:gap-2 text-center transition-all duration-300">
+                <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[7rem] leading-none -ml-10 sm:-ml-20 md:-ml-40 text-shadow-lg hover:text-yellow-300 transition-colors">
                   grand
                 </h1>
-                <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[7rem] leading-none ml-10 sm:ml-20 md:ml-50">
+                <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[7rem] leading-none ml-10 sm:ml-20 md:ml-50 text-shadow-lg hover:text-yellow-300 transition-colors">
                   theft
                 </h1>
-                <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[7rem] leading-none -ml-10 sm:-ml-20 md:-ml-40">
+                <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[7rem] leading-none -ml-10 sm:-ml-20 md:-ml-40 text-shadow-lg hover:text-yellow-300 transition-colors">
                   auto
                 </h1>
               </div>
               <img
-                className="absolute character bottom-[-5%] sm:bottom-[-20%] md:bottom-[-40%] lg:bottom-[-60%] left-1/2 -translate-x-1/2 scale-[1.2] sm:scale-[1.5] md:scale-[1.8] lg:scale-[2] rotate-[-10deg]"
+                className="absolute character bottom-[-5%] sm:bottom-[-20%] md:bottom-[-40%] lg:bottom-[-60%] left-1/2 -translate-x-1/2 scale-[1.2] sm:scale-[1.5] md:scale-[1.8] lg:scale-[2] rotate-[-10deg] transition-transform duration-300"
                 src="./girlbg.png"
                 alt="Character"
               />
@@ -195,14 +197,14 @@ function App() {
 
             {/* Bottom bar */}
             <div className="btmbar absolute bottom-0 w-full px-4 py-4 sm:py-6 md:py-10 md:px-10 bg-gradient-to-t from-black to-transparent text-white flex flex-col sm:flex-row items-center justify-between">
-              <div className="flex gap-2 sm:gap-3 items-center mb-3 sm:mb-0">
-                <i className="ri-arrow-down-line text-xl sm:text-2xl font-extrabold"></i>
+              <div className="flex gap-2 sm:gap-3 items-center mb-3 sm:mb-0 hover:text-yellow-300 transition-colors cursor-pointer group">
+                <i className="ri-arrow-down-line text-xl sm:text-2xl font-extrabold group-hover:animate-bounce"></i>
                 <h3 className="font1 text-base sm:text-lg md:text-2xl font-extrabold">
                   Scroll Down
                 </h3>
               </div>
               <img
-                className="h-[30px] sm:h-[40px] md:h-[55px] hidden sm:block"
+                className="h-[30px] sm:h-[40px] md:h-[55px] hidden sm:block hover:scale-105 transition-transform cursor-pointer"
                 src="./ps5.png"
                 alt="PS5"
               />
@@ -212,35 +214,35 @@ function App() {
           {/* Main content */}
           <div className="w-full min-h-screen bg-black flex items-center justify-center p-4 sm:px-8 md:px-20 overflow-hidden">
             <div className="cntnr flex flex-col md:flex-row items-center text-white w-full gap-6 sm:gap-8 md:gap-10">
-              <div className="limg relative w-full md:w-1/2 h-[200px] sm:h-[250px] md:h-full">
+              <div className="limg relative w-full md:w-1/2 h-[200px] sm:h-[250px] md:h-full group">
                 <img
-                  className="absolute w-[70%] sm:w-[75%] md:w-[450px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  className="absolute w-[70%] sm:w-[75%] md:w-[450px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 group-hover:scale-105"
                   src="./imag.png"
                   alt="Art"
                 />
               </div>
               <div className="rg w-full md:w-[40%] py-6 sm:py-8 md:py-20">
-                <h1 className="text-3xl sm:text-4xl md:text-6xl">Still Running,</h1>
-                <h1 className="text-3xl sm:text-4xl md:text-6xl">Not Hunting</h1>
-                <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-xl font1">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl hover:text-yellow-300 transition-colors cursor-default">Still Running,</h1>
+                <h1 className="text-3xl sm:text-4xl md:text-6xl hover:text-yellow-300 transition-colors cursor-default">Not Hunting</h1>
+                <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-xl font1 text-gray-300 hover:text-white transition-colors">
                   Welcome to the city that never sleeps — not because it's
                   awake, but because it's watching.
                 </p>
-                <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-xl font1">
+                <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-xl font1 text-gray-300 hover:text-white transition-colors">
                   Step into a world where every alley holds secrets, and every
                   block is a battlefield. If you're not fast, you're forgotten.
                 </p>
-                <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-xl font1">
+                <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-xl font1 text-gray-300 hover:text-white transition-colors">
                   Power, loyalty, and survival — that's the code. You ready to
                   play your part?
                 </p>
 
                 {/* Button */}
-                <p className="mt-4 sm:mt-6 uppercase tracking-widest text-yellow-300 text-xs sm:text-sm md:text-base">
+                <p className="mt-4 sm:mt-6 uppercase tracking-widest text-yellow-300 text-xs sm:text-sm md:text-base animate-pulse">
                   Available now on all major platforms
                 </p>
                 <a
-                  className="group relative inline-block mt-4 sm:mt-6 focus:ring-2 focus:outline-none"
+                  className="group relative inline-block mt-4 sm:mt-6 focus:ring-2 focus:ring-yellow-300 focus:outline-none transform hover:scale-105 transition-transform"
                   href="#"
                 >
                   <span className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
@@ -255,7 +257,7 @@ function App() {
             <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 md:gap-10">
               {/* Left Side - Branding */}
               <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1 sm:gap-2">
-                <h3 className="text-2xl sm:text-3xl font-bold uppercase">Rockstar Games</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold uppercase hover:text-yellow-300 transition-colors cursor-pointer">Rockstar Games</h3>
                 <p className="text-xs sm:text-sm text-gray-400 font1">
                   © {new Date().getFullYear()} All rights reserved
                 </p>
@@ -263,35 +265,35 @@ function App() {
 
               {/* Center - Links */}
               <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm flex-wrap justify-center tracking-widest">
-                <a href="#" className="hover:text-yellow-300 transition">
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">
                   Home
                 </a>
-                <a href="#" className="hover:text-yellow-300 transition">
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">
                   Games
                 </a>
-                <a href="#" className="hover:text-yellow-300 transition">
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">
                   News
                 </a>
-                <a href="#" className="hover:text-yellow-300 transition">
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">
                   Support
                 </a>
-                <a href="#" className="hover:text-yellow-300 transition">
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">
                   Careers
                 </a>
               </div>
 
               {/* Right Side - Social Icons */}
               <div className="flex gap-3 sm:gap-4 text-lg sm:text-xl justify-center">
-                <a href="#" className="hover:text-yellow-300 transition">
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-110 transform">
                   <i className="ri-facebook-fill"></i>
                 </a>
-                <a href="#" className="hover:text-yellow-300 transition">
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-110 transform">
                   <i className="ri-twitter-x-line"></i>
                 </a>
-                <a href="#" className="hover:text-yellow-300 transition">
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-110 transform">
                   <i className="ri-instagram-line"></i>
                 </a>
-                <a href="#" className="hover:text-yellow-300 transition">
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-110 transform">
                   <i className="ri-youtube-fill"></i>
                 </a>
               </div>
