@@ -60,7 +60,6 @@ function App() {
     
     let mm = gsap.matchMedia();
 
-    // Mobile devices (up to 639px)
     mm.add("(max-width: 639px)", () => {
       gsap.to(".character", {
         scale: 1.2,
@@ -73,7 +72,6 @@ function App() {
       });
     });
 
-    // Tablets (640px to 1023px)
     mm.add("(min-width: 640px) and (max-width: 1023px)", () => {
       gsap.to(".character", {
         scale: 0.9,
@@ -86,7 +84,6 @@ function App() {
       });
     });
 
-    // Desktop and larger screens (1024px and up)
     mm.add("(min-width: 1024px)", () => {
       gsap.to(".character", {
         scale: 0.7,
@@ -101,7 +98,7 @@ function App() {
     const main = document.querySelector(".main");
 
     main?.addEventListener("mousemove", function (e) {
-      if (window.innerWidth > 1024) {  // Only enable parallax on desktop
+      if (window.innerWidth > 1024) {
         const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
         gsap.to(".main .text", {
           x: `${-50 - xMove * 0.4}%`,
@@ -212,77 +209,69 @@ function App() {
           </div>
 
           {/* Main content */}
-          <div className="w-full min-h-screen bg-black flex items-center justify-center p-4 sm:px-8 md:px-20 overflow-hidden">
-            <div className="cntnr flex flex-col md:flex-row items-center text-white w-full gap-6 sm:gap-8 md:gap-10">
-              <div className="limg relative w-full md:w-1/2 h-[200px] sm:h-[250px] md:h-full group">
+          <div className="w-full min-h-screen bg-black py-20 px-4 sm:px-8 md:px-20">
+            <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+              <div className="relative group overflow-hidden rounded-lg">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <img
-                  className="absolute w-[70%] sm:w-[75%] md:w-[450px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-auto transform transition-transform duration-500 group-hover:scale-105"
                   src="./imag.png"
                   alt="Art"
                 />
               </div>
-              <div className="rg w-full md:w-[40%] py-6 sm:py-8 md:py-20">
-                <h1 className="text-3xl sm:text-4xl md:text-6xl hover:text-yellow-300 transition-colors cursor-default">Still Running,</h1>
-                <h1 className="text-3xl sm:text-4xl md:text-6xl hover:text-yellow-300 transition-colors cursor-default">Not Hunting</h1>
-                <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-xl font1 text-gray-300 hover:text-white transition-colors">
-                  Welcome to the city that never sleeps — not because it's
-                  awake, but because it's watching.
-                </p>
-                <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-xl font1 text-gray-300 hover:text-white transition-colors">
-                  Step into a world where every alley holds secrets, and every
-                  block is a battlefield. If you're not fast, you're forgotten.
-                </p>
-                <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-xl font1 text-gray-300 hover:text-white transition-colors">
-                  Power, loyalty, and survival — that's the code. You ready to
-                  play your part?
-                </p>
-
-                {/* Button */}
-                <p className="mt-4 sm:mt-6 uppercase tracking-widest text-yellow-300 text-xs sm:text-sm md:text-base animate-pulse">
-                  Available now on all major platforms
-                </p>
-                <a
-                  className="group relative inline-block mt-4 sm:mt-6 focus:ring-2 focus:ring-yellow-300 focus:outline-none transform hover:scale-105 transition-transform"
-                  href="#"
-                >
-                  <span className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
-                  <span className="relative inline-block border-2 border-white px-4 sm:px-6 md:px-8 py-2 md:py-3 text-xs sm:text-sm md:text-xl font-bold tracking-widest text-black uppercase">
-                    Download Now
-                  </span>
-                </a>
+              <div className="space-y-6 md:space-y-8">
+                <div className="space-y-2">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white hover:text-yellow-300 transition-colors cursor-default">
+                    Still Running,
+                  </h2>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white hover:text-yellow-300 transition-colors cursor-default">
+                    Not Hunting
+                  </h2>
+                </div>
+                <div className="space-y-4 font1">
+                  <p className="text-gray-300 hover:text-white transition-colors text-sm sm:text-base md:text-lg">
+                    Welcome to the city that never sleeps — not because it's awake, but because it's watching.
+                  </p>
+                  <p className="text-gray-300 hover:text-white transition-colors text-sm sm:text-base md:text-lg">
+                    Step into a world where every alley holds secrets, and every block is a battlefield. If you're not fast, you're forgotten.
+                  </p>
+                  <p className="text-gray-300 hover:text-white transition-colors text-sm sm:text-base md:text-lg">
+                    Power, loyalty, and survival — that's the code. You ready to play your part?
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <p className="uppercase tracking-widest text-yellow-300 text-xs sm:text-sm animate-pulse">
+                    Available now on all major platforms
+                  </p>
+                  <a
+                    href="#"
+                    className="group relative inline-block focus:outline-none focus:ring-2 focus:ring-yellow-300 transform hover:scale-105 transition-all"
+                  >
+                    <span className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                    <span className="relative inline-block border-2 border-white px-6 py-3 text-sm sm:text-base font-bold tracking-widest text-black uppercase">
+                      Download Now
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
+
           <footer className="w-full bg-black text-white px-4 sm:px-6 md:px-20 py-6 sm:py-8 md:py-10">
             <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 md:gap-10">
-              {/* Left Side - Branding */}
               <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1 sm:gap-2">
                 <h3 className="text-2xl sm:text-3xl font-bold uppercase hover:text-yellow-300 transition-colors cursor-pointer">Rockstar Games</h3>
                 <p className="text-xs sm:text-sm text-gray-400 font1">
                   © {new Date().getFullYear()} All rights reserved
                 </p>
               </div>
-
-              {/* Center - Links */}
               <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm flex-wrap justify-center tracking-widest">
-                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">
-                  Home
-                </a>
-                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">
-                  Games
-                </a>
-                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">
-                  News
-                </a>
-                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">
-                  Support
-                </a>
-                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">
-                  Careers
-                </a>
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">Home</a>
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">Games</a>
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">News</a>
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">Support</a>
+                <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-105 transform">Careers</a>
               </div>
-
-              {/* Right Side - Social Icons */}
               <div className="flex gap-3 sm:gap-4 text-lg sm:text-xl justify-center">
                 <a href="#" className="hover:text-yellow-300 transition-colors hover:scale-110 transform">
                   <i className="ri-facebook-fill"></i>
