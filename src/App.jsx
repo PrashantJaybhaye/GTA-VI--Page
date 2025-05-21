@@ -60,11 +60,12 @@ function App() {
     
     let mm = gsap.matchMedia();
 
-    mm.add("(max-width: 767px)", () => {
-      // For mobile devices
+    // Mobile devices (up to 639px)
+    mm.add("(max-width: 639px)", () => {
       gsap.to(".character", {
-        scale: 1,
+        scale: 1.2,
         x: "-50%",
+        y: "20%",
         rotate: 0,
         duration: 2,
         delay: "-.8",
@@ -72,8 +73,21 @@ function App() {
       });
     });
 
-    mm.add("(min-width: 768px)", () => {
-      // For tablets and larger
+    // Tablets (640px to 1023px)
+    mm.add("(min-width: 640px) and (max-width: 1023px)", () => {
+      gsap.to(".character", {
+        scale: 0.9,
+        x: "-50%",
+        y: "10%",
+        rotate: 0,
+        duration: 2,
+        delay: "-.8",
+        ease: "expo.easeInOut",
+      });
+    });
+
+    // Desktop and larger screens (1024px and up)
+    mm.add("(min-width: 1024px)", () => {
       gsap.to(".character", {
         scale: 0.7,
         x: "-50%",
@@ -136,14 +150,14 @@ function App() {
         <div className="main w-full rotate-[-10deg] scale-[1.7]">
           <div className="landing relative w-full h-screen bg-black overflow-hidden">
             {/* Navbar */}
-            <div className="navbar absolute top-0 left-0 z-[10] w-full py-4 px-4 md:py-6 md:px-10 flex items-center justify-between">
-              <div className="logo flex gap-3 md:gap-6">
-                <div className="lines flex flex-col gap-[3px] md:gap-[5px]">
-                  <div className="line w-10 h-1.5 bg-white"></div>
-                  <div className="line w-6 h-1.5 bg-white"></div>
-                  <div className="line w-4 h-1.5 bg-white"></div>
+            <div className="navbar absolute top-0 left-0 z-[10] w-full py-3 sm:py-4 md:py-6 px-4 md:px-10 flex items-center justify-between">
+              <div className="logo flex gap-2 sm:gap-3 md:gap-6">
+                <div className="lines flex flex-col gap-[2px] sm:gap-[3px] md:gap-[5px]">
+                  <div className="line w-8 sm:w-10 h-1 sm:h-1.5 bg-white"></div>
+                  <div className="line w-5 sm:w-6 h-1 sm:h-1.5 bg-white"></div>
+                  <div className="line w-3 sm:w-4 h-1 sm:h-1.5 bg-white"></div>
                 </div>
-                <h3 className="text-2xl md:text-4xl text-white sm:-mt-[10px] max-sm:-mt-[5px]">
+                <h3 className="text-xl sm:text-2xl md:text-4xl text-white -mt-[3px] sm:-mt-[5px] md:-mt-[10px]">
                   Rockstar
                 </h3>
               </div>
@@ -161,34 +175,34 @@ function App() {
                 src="./bg.png"
                 alt="Background"
               />
-              <div className="text absolute top-28 left-1/2 -translate-x-1/2 text-white flex flex-col gap-2 text-center">
-                <h1 className="text-[3rem] sm:text-[5rem] lg:text-[7rem] leading-none -ml-14 sm:-ml-40">
+              <div className="text absolute top-20 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 text-white flex flex-col gap-1 sm:gap-2 text-center">
+                <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[7rem] leading-none -ml-10 sm:-ml-20 md:-ml-40">
                   grand
                 </h1>
-                <h1 className="text-[3rem] sm:text-[5rem] lg:text-[7rem] leading-none ml-14 sm:ml-50">
+                <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[7rem] leading-none ml-10 sm:ml-20 md:ml-50">
                   theft
                 </h1>
-                <h1 className="text-[3rem] sm:text-[5rem] lg:text-[7rem] leading-none -ml-14 sm:-ml-40">
+                <h1 className="text-[2.5rem] sm:text-[4rem] md:text-[5rem] lg:text-[7rem] leading-none -ml-10 sm:-ml-20 md:-ml-40">
                   auto
                 </h1>
               </div>
               <img
-                className="absolute character bottom-[-10%] md:bottom-[-60%] left-1/2 -translate-x-1/2 scale-[12] md:scale-[2] rotate-[-10deg]"
+                className="absolute character bottom-[-5%] sm:bottom-[-20%] md:bottom-[-40%] lg:bottom-[-60%] left-1/2 -translate-x-1/2 scale-[1.2] sm:scale-[1.5] md:scale-[1.8] lg:scale-[2] rotate-[-10deg]"
                 src="./girlbg.png"
                 alt="Character"
               />
             </div>
 
             {/* Bottom bar */}
-            <div className="btmbar absolute bottom-0 w-full px-4 py-6 md:py-10 md:px-10 bg-gradient-to-t from-black to-transparent text-white flex flex-col sm:flex-row items-center justify-between">
-              <div className="flex gap-3 items-center mb-4 sm:mb-0">
-                <i className="ri-arrow-down-line text-2xl font-extrabold"></i>
-                <h3 className="font1 text-lg md:text-2xl font-extrabold">
+            <div className="btmbar absolute bottom-0 w-full px-4 py-4 sm:py-6 md:py-10 md:px-10 bg-gradient-to-t from-black to-transparent text-white flex flex-col sm:flex-row items-center justify-between">
+              <div className="flex gap-2 sm:gap-3 items-center mb-3 sm:mb-0">
+                <i className="ri-arrow-down-line text-xl sm:text-2xl font-extrabold"></i>
+                <h3 className="font1 text-base sm:text-lg md:text-2xl font-extrabold">
                   Scroll Down
                 </h3>
               </div>
               <img
-                className="h-[40px] md:h-[55px] hidden sm:block"
+                className="h-[30px] sm:h-[40px] md:h-[55px] hidden sm:block"
                 src="./ps5.png"
                 alt="PS5"
               />
@@ -196,59 +210,59 @@ function App() {
           </div>
 
           {/* Main content */}
-          <div className="w-full min-h-screen bg-black flex items-center justify-center px-4 md:px-20 overflow-hidden">
-            <div className="cntnr flex flex-col md:flex-row items-center text-white w-full gap-10">
-              <div className="limg relative w-full md:w-1/2 h-[300px] md:h-full">
+          <div className="w-full min-h-screen bg-black flex items-center justify-center p-4 sm:px-8 md:px-20 overflow-hidden">
+            <div className="cntnr flex flex-col md:flex-row items-center text-white w-full gap-6 sm:gap-8 md:gap-10">
+              <div className="limg relative w-full md:w-1/2 h-[200px] sm:h-[250px] md:h-full">
                 <img
-                  className="absolute w-[80%] md:w-[450px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  className="absolute w-[70%] sm:w-[75%] md:w-[450px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   src="./imag.png"
                   alt="Art"
                 />
               </div>
-              <div className="rg w-full md:w-[40%] py-10 md:py-20">
-                <h1 className="text-4xl md:text-6xl">Still Running,</h1>
-                <h1 className="text-4xl md:text-6xl">Not Hunting</h1>
-                <p className="mt-6 text-base md:text-xl font1">
-                  Welcome to the city that never sleeps — not because it’s
-                  awake, but because it’s watching.
+              <div className="rg w-full md:w-[40%] py-6 sm:py-8 md:py-20">
+                <h1 className="text-3xl sm:text-4xl md:text-6xl">Still Running,</h1>
+                <h1 className="text-3xl sm:text-4xl md:text-6xl">Not Hunting</h1>
+                <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-xl font1">
+                  Welcome to the city that never sleeps — not because it's
+                  awake, but because it's watching.
                 </p>
-                <p className="mt-4 text-base md:text-xl font1">
+                <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-xl font1">
                   Step into a world where every alley holds secrets, and every
-                  block is a battlefield. If you’re not fast, you’re forgotten.
+                  block is a battlefield. If you're not fast, you're forgotten.
                 </p>
-                <p className="mt-4 text-base md:text-xl font1">
-                  Power, loyalty, and survival — that’s the code. You ready to
+                <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-xl font1">
+                  Power, loyalty, and survival — that's the code. You ready to
                   play your part?
                 </p>
 
                 {/* Button */}
-                <p className="mt-6 uppercase tracking-widest text-yellow-300 text-sm md:text-base">
+                <p className="mt-4 sm:mt-6 uppercase tracking-widest text-yellow-300 text-xs sm:text-sm md:text-base">
                   Available now on all major platforms
                 </p>
                 <a
-                  className="group relative inline-block mt-6 focus:ring-2 focus:outline-none"
+                  className="group relative inline-block mt-4 sm:mt-6 focus:ring-2 focus:outline-none"
                   href="#"
                 >
                   <span className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-yellow-300 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
-                  <span className="relative inline-block border-2 border-white px-6 py-2 md:px-8 md:py-3 text-sm md:text-xl font-bold tracking-widest text-black uppercase">
+                  <span className="relative inline-block border-2 border-white px-4 sm:px-6 md:px-8 py-2 md:py-3 text-xs sm:text-sm md:text-xl font-bold tracking-widest text-black uppercase">
                     Download Now
                   </span>
                 </a>
               </div>
             </div>
           </div>
-          <footer className="w-full bg-black text-white px-6 md:px-20 py-10">
-            <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+          <footer className="w-full bg-black text-white px-4 sm:px-6 md:px-20 py-6 sm:py-8 md:py-10">
+            <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 md:gap-10">
               {/* Left Side - Branding */}
-              <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2">
-                <h3 className="text-3xl font-bold uppercase">Rockstar Games</h3>
-                <p className="text-sm text-gray-400 font1">
+              <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1 sm:gap-2">
+                <h3 className="text-2xl sm:text-3xl font-bold uppercase">Rockstar Games</h3>
+                <p className="text-xs sm:text-sm text-gray-400 font1">
                   © {new Date().getFullYear()} All rights reserved
                 </p>
               </div>
 
               {/* Center - Links */}
-              <div className="flex gap-6 text-sm flex-wrap justify-center tracking-widest">
+              <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm flex-wrap justify-center tracking-widest">
                 <a href="#" className="hover:text-yellow-300 transition">
                   Home
                 </a>
@@ -267,7 +281,7 @@ function App() {
               </div>
 
               {/* Right Side - Social Icons */}
-              <div className="flex gap-4 text-xl justify-center">
+              <div className="flex gap-3 sm:gap-4 text-lg sm:text-xl justify-center">
                 <a href="#" className="hover:text-yellow-300 transition">
                   <i className="ri-facebook-fill"></i>
                 </a>
