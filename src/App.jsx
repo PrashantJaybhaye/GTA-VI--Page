@@ -57,13 +57,31 @@ function App() {
       delay: "-.8",
       ease: "expo.easeInOut",
     });
-    gsap.to(".character", {
-      scale: 0.7,
-      x: "-50%",
-      rotate: 0,
-      duration: 2,
-      delay: "-.8",
-      ease: "expo.easeInOut",
+    
+    let mm = gsap.matchMedia();
+
+    mm.add("(max-width: 767px)", () => {
+      // For mobile devices
+      gsap.to(".character", {
+        scale: 1,
+        x: "-50%",
+        rotate: 0,
+        duration: 2,
+        delay: "-.8",
+        ease: "expo.easeInOut",
+      });
+    });
+
+    mm.add("(min-width: 768px)", () => {
+      // For tablets and larger
+      gsap.to(".character", {
+        scale: 0.7,
+        x: "-50%",
+        rotate: 0,
+        duration: 2,
+        delay: "-.8",
+        ease: "expo.easeInOut",
+      });
     });
 
     const main = document.querySelector(".main");
